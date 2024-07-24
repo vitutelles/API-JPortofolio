@@ -1,7 +1,10 @@
-const express = require('express');
-const connectDatabase = require("./src/database/db")
-const userRoute = require("./src/routes/user.route");
-require('dotenv').config()
+import express from "express"
+import dotenv from 'dotenv';
+import connectDatabase from "./src/database/database.js";
+import userRoute from "./src/routes/user.route.js";
+
+
+dotenv.config();
 
 
 

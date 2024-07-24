@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const connectDatabase = () => {
     console.log("wait connecting to the database")
@@ -13,4 +13,4 @@ const connectDatabase = () => {
 
 
 
-module.exports = connectDatabase
+export default  connectDatabase;
