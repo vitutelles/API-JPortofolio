@@ -25,11 +25,11 @@ const NewsSchema = new mongoose.Schema({
         required: true,
     },
     likes: {
-        type: array,
+        type: Array,
         require: true,
     },
     comments: {
-        type: array,
+        type: Array,
         require: true,
     },
 
