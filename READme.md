@@ -1,13 +1,9 @@
 # JPortofolio   MERN STACK
 
-#mongoDB
 
-#express
-
-#react
-
-#nodejs
-
-
+* MongoDB
+* Express
+* React
+* Nodejs
 
 ## demo
