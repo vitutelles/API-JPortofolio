@@ -1,7 +1,13 @@
-# FloripamilGrau Journal
+# JPortofolio   MERN STACK
 
-#HTML
-#JAVASCRIPT
-#CSS
+#mongoDB
+
+#express
+
+#react
+
+#nodejs
+
+
 
 ## demo
