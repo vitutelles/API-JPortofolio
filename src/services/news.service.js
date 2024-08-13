@@ -15,6 +15,7 @@ const searchByTitleService = (title) =>
     News.find({
     title: { $regex: `${title || " "}`, $options: "i" },}).sort({ _id: -1 }).populate("user");
 
+const byUserService = (id) => News.find({user: id}).sort({ _id: -1 }).populate("user");
 
 export {
     createService,
@@ -22,5 +23,6 @@ export {
     counterNews,
     topNewsService,
     findByidService,
-    searchByTitleService
+    searchByTitleService,
+    byUserService
 };
