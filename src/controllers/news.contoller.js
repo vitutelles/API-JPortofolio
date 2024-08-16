@@ -1,4 +1,4 @@
-import { createService, findAllService, counterNews, topNewsService, findByidService, searchByTitleService,byUserService } from "../services/news.service.js";
+import { createService, findAllService, counterNews, topNewsService, findByidService, searchByTitleService, byUserService, updateService } from "../services/news.service.js";
 
 const create = async (req, res) => {
     try {
@@ -176,7 +176,7 @@ const byUser = async (req, res) => {
         const id = req.userId;
         const news = await byUserService(id)
 
-        
+
         return res.send({
             results: news.map((item) => ({
                 id: item._id,
@@ -197,7 +197,31 @@ const byUser = async (req, res) => {
 
 };
 
+const update = async (req, res) => {
+    try {
+        const { title, text, banner } = req.body;
+        const { id } = req.params;
+
+        if (!title && !banner && !text) {
+            return res.status(400).send({
+                message: "Submit all fields for registration",
+            });
+        }
+
+        const news = await findByidService(id);
+
+        if (news.user._id != req.userId ) {
+            return res.status(400).send({
+                message: "You didn't uptade this post"
+            });
+        }
+        await updateService(id , title, text, banner); 
+        return res.send({ message: "Post successfully uptade"});
+    } catch (err) {
+        return res.status(500).send({ message: err.message });
+    }
+}
 
 
 
-export { create, findAll, topNews, findByid, searchByTitle, byUser};
+export { create, findAll, topNews, findByid, searchByTitle, byUser, update };

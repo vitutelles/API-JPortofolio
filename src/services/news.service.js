@@ -11,11 +11,19 @@ const topNewsService = () => News.findOne().sort({ _id: -1 }).populate("user");
 
 const findByidService = (id) => News.findById(id).populate("user");
 
-const searchByTitleService = (title) => 
+const searchByTitleService = (title) =>
     News.find({
-    title: { $regex: `${title || " "}`, $options: "i" },}).sort({ _id: -1 }).populate("user");
+        title: { $regex: `${title || " "}`, $options: "i" },
+    }).sort({ _id: -1 }).populate("user");
 
-const byUserService = (id) => News.find({user: id}).sort({ _id: -1 }).populate("user");
+const byUserService = (id) => News.find({ user: id }).sort({ _id: -1 }).populate("user");
+
+const updateService = (id, title, text, banner) => News.findOneAndUpdate({ _id: id }, { title, text, banner }, {
+    rawResult: true,
+});
+
+
+
 
 export {
     createService,
@@ -24,5 +32,6 @@ export {
     topNewsService,
     findByidService,
     searchByTitleService,
-    byUserService
+    byUserService,
+    updateService
 };
