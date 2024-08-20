@@ -1,4 +1,4 @@
-import { createService, findAllService, counterNews, topNewsService, findByidService, searchByTitleService, byUserService, updateService } from "../services/news.service.js";
+import { createService, findAllService, counterNews, topNewsService, findByidService, searchByTitleService, byUserService, updateService, eraseService, } from "../services/news.service.js";
 
 const create = async (req, res) => {
     try {
@@ -222,6 +222,24 @@ const update = async (req, res) => {
     }
 }
 
+const erase = async (req, res) => {
+    try { 
+    const { id } = req.params;
+    
+    const news = await findByidService(id);
 
+     if (String(news.user._id) !== req.userId){
+        return res.status(400).send ({
+    message: "You didn`t delete this post" });
+        }
+        
 
-export { create, findAll, topNews, findByid, searchByTitle, byUser, update };
+        await eraseService(id);
+        return res.send({message:"News deleted successfully"});
+        
+    } catch (err) {
+        return res.status(500).send({ message: err.message });
+    }
+}
+
+export { create, findAll, topNews, findByid, searchByTitle, byUser, update,erase };
